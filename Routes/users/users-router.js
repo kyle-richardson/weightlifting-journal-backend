@@ -28,8 +28,12 @@ router.get('/:id/workouts', restricted, (req, res) => {
     const {id} = req.params;
 
     Workouts.findByUserId(id)
-        .then(user => {
-            res.status(200).json(user)
+        .then(workouts => {
+            if(workouts.length>0){
+                res.status(200).json({workouts})
+            } else {
+                res.status(400).json({ message: `Please add a workout` })
+            }
         })
         .catch(err => {
             res.status(500).json(err);
