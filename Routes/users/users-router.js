@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Users = require('./users-model');
 const restricted = require('../auth/auth-middleware');
+const Workouts = require('../workouts/workouts-model');
 
 router.get('/', restricted, (req, res) => {
     console.log("Fetching users..");
@@ -26,11 +27,13 @@ router.get('/:id', restricted, (req, res) => {
 router.get('/:id/workouts', restricted, (req, res) => {
     const {id} = req.params;
 
-    if(req.session.user.id === id || req.session.admin.id === id){
-
-    } else {
-        res.status(404).json({ message: '' }); //in progress
-    }
+    Workouts.findByUserId(id)
+        .then(user => {
+            res.status(200).json(user)
+        })
+        .catch(err => {
+            res.status(500).json(err);
+        })
 });
 
 router.put('/:id', (req, res) => {

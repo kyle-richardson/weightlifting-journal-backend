@@ -5,7 +5,8 @@ module.exports = {
     find,
     findBy,
     findById,
-    remove
+    remove,
+    findByUserId
 };
 
 function find(){ // => workouts list
@@ -40,3 +41,14 @@ function remove(id){
         .where({ id: Number(id) })
         .del()
 }
+
+function findByUserId(id){
+    console.log(id);
+    return db('users-workouts')
+        .select(
+            'w.name', 'w.muscle_group', 'uw.weight', 'uw.reps', 'uw.sets', 'uw.date_completed'
+        )
+        .from('users-workouts as uw')
+        .leftJoin('workouts as w', 'w.id', 'uw.workout_id')
+        .where('uw.user_id', '=', id)
+} 
