@@ -8,18 +8,18 @@ module.exports = {
     remove
 };
 
-function find(){
+function find(){ // => user list
     return db('users')
-        .select('id', 'username', 'password');
+        .select('id', 'username', 'password', 'department');
 };
 
-function findBy(filter){
+function findBy(filter){ // => user @ filter
     return db('users')
-        .select('id', 'username', 'password')
+        .select('id', 'username', 'password', 'department')
         .where(filter);
 };
 
-function add(user){
+function add(user){ // => new user
     return db('users')
         .insert(user)
         .then(ids => {
@@ -28,9 +28,9 @@ function add(user){
         });
 };
 
-function findById(id){
+function findById(id){ // => user at id
     return db('users')
-        .select('id', 'username')
+        .select('id', 'username', 'department')
         .where({ id })
         .first();
 };
