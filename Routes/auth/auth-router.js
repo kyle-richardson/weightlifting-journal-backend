@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 
 const Users = require('../users/users-model');
 
-router.post('/register', (req, res) => { //done 
+router.post('/register', (req, res) => { 
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 12);
     user.password = hash;
@@ -41,5 +41,19 @@ router.post('/login', (req, res) => {
             res.status(500).json({ err: err.message })
         })
 })
+
+router.get('/logout', (req, res) => {
+    if(req.session){
+        req.session.destroy(err => {
+            if(err){
+                res.status(500).json({ err: err.message, message: "Not logged out" });
+            } else {
+                res.status(200).json({ message: 'Logged out successfully' });
+            };
+        });
+    } else {
+        res.status(200).json({ message: 'You were not logged in' });
+    };
+});
 
 module.exports = router;
