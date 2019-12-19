@@ -28,7 +28,7 @@ function add(user){ // => new user
         });
 };
 
-function findById(id){ // => user at id
+function findById(id){ // => workout at id
     return db('workouts')
         .select('id', 'name', 'muscle_group')
         .where({ id })
