@@ -2,6 +2,8 @@ const router = require('express').Router();
 const Users = require('./users-model');
 const restricted = require('../auth/auth-middleware');
 const Workouts = require('../workouts/workouts-model');
+const bcrypt = require('bcryptjs');
+
 
 router.get('/', restricted, (req, res) => {
     console.log("Fetching users..");
@@ -40,8 +42,31 @@ router.get('/:id/workouts', restricted, (req, res) => {
         })
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', restricted, (req, res) => {
+    const {id} = req.params;
+    const changes = req.body;
+    const hash = bcrypt.hashSync(changes.password, 12);
+    changes.password = hash;
 
+    Users.update(changes, id)
+        .then(user => {
+            console.log(changes);
+            console.log(user)
+            if(user){
+                Users.findById(id)
+                .then(user => {
+                    res.status(200).json({ updatedUser: user })
+                })
+                .catch(err => {
+                    res.status(500).json(err);
+                })
+            } else {
+                res.status(500).json({ message: 'please provide a valid id' })
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ err: err.message })
+        })
 });
 
 router.delete('/:id', restricted, (req, res) => {
