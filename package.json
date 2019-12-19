@@ -1,0 +1,31 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cross-env DB_ENV = testing jest --watch --verbose",
+    "server": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BW-WeightLiftingJournal/back-end.git"
+  },
+  "author": "Sage Jordan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BW-WeightLiftingJournal/back-end/issues"
+  },
+  "homepage": "https://github.com/BW-WeightLiftingJournal/back-end#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "knex": "^0.20.4",
+    "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
