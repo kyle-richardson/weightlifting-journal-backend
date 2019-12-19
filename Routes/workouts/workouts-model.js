@@ -8,20 +8,20 @@ module.exports = {
     remove
 };
 
-function find(){ // => user list
+function find(){ // => workouts list
     return db('workouts')
         .select('id', 'name', 'muscle_group');
 };
 
-function findBy(filter){ // => user @ filter
+function findBy(filter){ // => workout @ filter
     return db('workouts')
         .select('id', 'name', 'muscle_group')
         .where(filter);
 };
 
-function add(user){ // => new user
+function add(workout){ // => new workout
     return db('workouts')
-        .insert(user)
+        .insert(workout)
         .then(ids => {
             const [id] = ids;
             return findById(id);

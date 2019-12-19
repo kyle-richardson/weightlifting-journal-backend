@@ -11,7 +11,7 @@ router.get('/', restricted, (req, res) => {
         .catch(err => res.send(err));
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', restricted, (req, res) => {
     const {id} = req.params;
     console.log(`Getting user with id ${id}`)
     Users.findById(id)
@@ -23,15 +23,21 @@ router.get('/:id', (req, res) => {
         })
 });
 
-router.get('/:id/workouts', (req, res) => {
-    
+router.get('/:id/workouts', restricted, (req, res) => {
+    const {id} = req.params;
+
+    if(req.session.user.id === id || req.session.admin.id === id){
+
+    } else {
+        res.status(404).json({ message: '' }); //in progress
+    }
 });
 
 router.put('/:id', (req, res) => {
 
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', restricted, (req, res) => {
     const {id} = req.params;
     console.log(`Deleting user ${id}`);
     Users.remove(id)

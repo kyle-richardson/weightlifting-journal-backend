@@ -25,13 +25,15 @@ router.post('/login', (req, res) => {
         .first()
         .then(user => {
             console.log("User: ", user);
+            console.log(user.department);
             if(user && bcrypt.compareSync(password, user.password)){
                 if(user.department === 'Admin'){
                     req.session.admin = user;
-                    res.status(200).json({ message: `Welcome ${user.username}!`, session: req.session });
+                    req.session.user = {id: ''}
+                    res.status(200).json({ message: `Welcome Admin ${user.username}!`, session: req.session });
                 } else {
                     req.session.user = user;
-                    res.status(200).json({ message: `Welcome ${user.username}!`, session: req.session });
+                    res.status(200).json({ message: `Welcome Student ${user.username}!`, session: req.session });
                 }
             } else {
                 res.status(401).json({ message: `Invalid Cridentials` });

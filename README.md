@@ -30,5 +30,5 @@
 <!-- Workouts  -->
 * | GET    | /api/workouts  | Returns an array of all the workouts contained in the database.
 * | GET    | /api/workouts/:id | Returns the workout object with the specified `id`.
-* | DELETE | /api/workouts/:id | Removes the workout with the specified `id` and returns the deleted user. 
+* | DELETE | /api/workouts/:id | Removes the workout with the specified `id` and returns the deleted workout. 
 * | PUT    | /api/workouts/:id | Updates the workout with the specified `id` using data from the `request body`. Returns the modified document. 
