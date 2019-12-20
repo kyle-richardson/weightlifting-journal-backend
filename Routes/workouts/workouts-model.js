@@ -5,8 +5,7 @@ module.exports = {
     find,
     findBy,
     findById,
-    remove,
-    findByUserId
+    remove
 };
 
 function find(){ // => workouts list
@@ -21,13 +20,11 @@ function findBy(filter){ // => workout @ filter
 };
 
 function add(workout){ // => new workout
-    return db('users-workouts')
+    return db('workouts')
         .insert(workout)
         .then(ids => {
             const [id] = ids;
-            console.log(id);
-            console.log(findByUsersWorkoutsId(id))
-            return findByUsersWorkoutsId(id);
+            return findById(id);
         });
 };
 
@@ -38,29 +35,8 @@ function findById(id){ // => workout at id
         .first();
 };
 
-function remove(id){
+function remove(id){ // => workout deleted
     return db('workouts')
         .where({ id: Number(id) })
         .del()
-}
-
-function findByUserId(id){
-    console.log(id);
-    return db('users-workouts')
-        .select(
-            'w.name', 'w.muscle_group', 'uw.weight', 'uw.reps', 'uw.sets', 'uw.date_completed'
-        )
-        .from('users-workouts as uw')
-        .leftJoin('workouts as w', 'w.id', 'uw.workout_id')
-        .where('uw.user_id', '=', id)
-} 
-
-function findByUsersWorkoutsId(id){
-    return db('users-workouts')
-    .select(
-        'w.name', 'w.muscle_group', 'uw.weight', 'uw.reps', 'uw.sets', 'uw.date_completed'
-    )
-    .from('users-workouts as uw')
-    .leftJoin('workouts as w', 'w.id', 'uw.workout_id')
-    .where('uw.id', id);
 }

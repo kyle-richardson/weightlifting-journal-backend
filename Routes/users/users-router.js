@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const Users = require('./users-model');
 const restricted = require('../auth/auth-middleware');
-const Workouts = require('../workouts/workouts-model');
+const usersWorkoutsRouter = require('../users-workouts/users-workouts-router');
 const bcrypt = require('bcryptjs');
 
+router.use('/workouts', usersWorkoutsRouter);
 
 router.get('/', restricted, (req, res) => {
     console.log("Fetching users..");
@@ -25,35 +26,6 @@ router.get('/:id', restricted, (req, res) => {
             res.status(500).json(err);
         })
 });
-
-router.get('/:id/workouts', restricted, (req, res) => {
-    const {id} = req.params;
-
-    Workouts.findByUserId(id)
-        .then(workouts => {
-            if(workouts.length>0){
-                res.status(200).json({workouts})
-            } else {
-                res.status(400).json({ message: `Please add a workout` })
-            }
-        })
-        .catch(err => {
-            res.status(500).json(err);
-        })
-});
-
-router.post('/:id/workouts', restricted, (req, res) => {
-    const {id} = req.params;
-    const workout = req.body;
-
-    Workouts.add(workout)
-        .then(newWorkout => {
-            res.status(200).json({ newWorkout: newWorkout })
-        })
-        .catch(err => {
-            res.status(500).json({ err: err.message });
-        });
-})
 
 router.put('/:id', restricted, (req, res) => {
     const {id} = req.params;

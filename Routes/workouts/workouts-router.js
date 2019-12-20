@@ -25,7 +25,8 @@ router.get('/:id', (req, res) => {
 
 
 router.put('/:id', (req, res) => {
-
+    Workouts.update(changes, id)
+        .then()
 });
 
 router.delete('/:id', restricted, (req, res) => {
