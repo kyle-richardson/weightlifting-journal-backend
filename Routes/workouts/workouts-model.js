@@ -5,7 +5,8 @@ module.exports = {
     find,
     findBy,
     findById,
-    remove
+    remove,
+    update
 };
 
 function find(){ // => workouts list
@@ -39,4 +40,10 @@ function remove(id){ // => workout deleted
     return db('workouts')
         .where({ id: Number(id) })
         .del()
+}
+
+function update(changes, id){
+    return db('workouts')
+        .where({ id })
+        .update(changes)
 }

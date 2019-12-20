@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const Workouts = require('./users-workouts-model');
-const restricted = require('../auth/auth-middleware');
 
-router.get('/:id', restricted, (req, res) => {
+router.get('/:id', (req, res) => {
     const {id} = req.params;
     Workouts.findByUserId(id)
         .then(workouts => {
@@ -17,7 +16,7 @@ router.get('/:id', restricted, (req, res) => {
         });
 })
 
-router.post('/', restricted, (req, res) => {
+router.post('/', (req, res) => {
     const workout = req.body;
 
     Workouts.add(workout)
@@ -29,7 +28,7 @@ router.post('/', restricted, (req, res) => {
         });
 })
 
-router.delete('/:id', restricted, (req, res) => {
+router.delete('/:id', (req, res) => {
     const {id} = req.params;
     Workouts.remove(id)
         .then(deleted => {
