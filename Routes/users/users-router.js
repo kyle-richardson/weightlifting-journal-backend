@@ -42,6 +42,19 @@ router.get('/:id/workouts', restricted, (req, res) => {
         })
 });
 
+router.post('/:id/workouts', restricted, (req, res) => {
+    const {id} = req.params;
+    const workout = req.body;
+
+    Workouts.add(workout)
+        .then(newWorkout => {
+            res.status(200).json({ newWorkout: newWorkout })
+        })
+        .catch(err => {
+            res.status(500).json({ err: err.message });
+        });
+})
+
 router.put('/:id', restricted, (req, res) => {
     const {id} = req.params;
     const changes = req.body;

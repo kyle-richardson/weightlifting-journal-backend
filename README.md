@@ -24,9 +24,11 @@
 <!-- Users  -->
 * | GET    | /api/users     | Returns an array of all the user objects contained in the database. **Must be logged in as Admin**
 * | GET    | /api/users/:id | Returns the user object with the specified `id`. **Must be logged in as Admin OR be logged in as user with specified id**
-* | GET    | /api/users/:id/workouts | Returns list of specified users workouts (including all data).
 * | DELETE | /api/users/:id | Removes the user with the specified `id` and returns the deleted user. **Must be logged in as Admin OR be logged in as user with specified id**
 * | PUT    | /api/users/:id | Updates the user with the specified `id` using data from the `request body`. Returns the modified document. **Must be logged in as Admin OR be logged in as user with specified id**
+<!-- Users Workouts -->
+* | GET    | /api/users/:id/workouts | Returns list of specified users-workouts (including all reps/sets/etc).
+* | POST   | /api/users/:id/workouts | Adds a workout to users-workouts using information sent inside the `request body` in `/json/`. Example body: { "workout_id": "1", "user_id": "1", "weight": "30.0", "reps": "10", "sets": "3" } 
 <!-- Workouts  -->
 * | GET    | /api/workouts  | Returns an array of all the workouts contained in the database.
 * | GET    | /api/workouts/:id | Returns the workout object with the specified `id`.
