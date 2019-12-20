@@ -21,11 +21,11 @@ function findBy(filter){ // => workout @ filter
 };
 
 function add(workout){ // => new workout
-    return db('workouts')
+    return db('users-workouts')
         .insert(workout)
         .then(ids => {
             const [id] = ids;
-            return findById(id);
+            return findByUserId(id);
         });
 };
 
