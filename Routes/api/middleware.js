@@ -5,7 +5,7 @@ const sessionConfig = {
     name: 'monkey',
     secret: 'Keep it secret, keep it safe!',
     cookie: {
-        maxAge: 1000 * 60,
+        maxAge: 2 * 60 * 60 * 1000,
         secure: false,
         httpOnly: true
     },
