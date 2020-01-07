@@ -30,8 +30,5 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
-  },
-  "resolutions": {
-    "minipass": "2.7.0"
   }
 }
