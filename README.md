@@ -18,9 +18,12 @@
 # Endpoints
 * | Method | **URL**         | Description  
 
+<!-- BASE URL -->
+**https://bw-weight-lifting-journal.herokuapp.com**
+
 <!-- Auth  -->
-* | POST   | **/api/auth/register** | Registers a user using the information sent inside the `request body` in `/json/`. Example body: { "username": "iLoveLambda", "password": "pass", "department": "Student" }
-* | POST   | **/api/auth/login**   | Logs in a user using the information sent inside the `request body` in `/json`. Example body: { "username": "iLoveLambda", "password": "pass" }. **Should return a cookie that expires in 1 day**
+* | POST   | **/api/auth/register** | Registers a user using the information sent inside the `request body` in `/json/`. Example body: { "username": "TheOfficialAdmin", "password": "adminpassword", "department": "Admin" } `department` can be either `Student` or `Admin`.
+* | POST   | **/api/auth/login**   | Logs in a user using the information sent inside the `request body` in `/json`. Example body: { "username": "TheOfficialAdmin", "password": "adminpassword" }. **Should return a cookie that expires in 1 day**
 * | GET    | **/api/auth/logout**  | Logs user out, deletes cookie.
 
 <!-- Workouts  -->
