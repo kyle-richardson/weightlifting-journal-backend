@@ -1,12 +1,15 @@
-const express = require('express');
+const express = require("express");
+const cors = require("cors");
 
 const server = express();
 
-const apiRouter = require('./Routes/api/api-router');
-const middleware = require('./Routes/api/middleware');
+const apiRouter = require("./Routes/api/api-router");
+const middleware = require("./Routes/api/middleware");
 
 middleware(server);
 
-server.use('/api', apiRouter);
+server.use("/api", apiRouter);
+
+server.use(cors());
 
 module.exports = server;
