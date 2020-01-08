@@ -1,5 +1,4 @@
 const express = require("express");
-const cors = require("cors");
 
 const server = express();
 
@@ -9,7 +8,5 @@ const middleware = require("./Routes/api/middleware");
 middleware(server);
 
 server.use("/api", apiRouter);
-
-server.use(cors());
 
 module.exports = server;
