@@ -36,6 +36,6 @@
 <!-- Workouts -->
 **NOT Restricted**
 * | GET    | **/api/workouts/:id** | Takes `User ID` as a parameter. Returns list of specified workouts (including all reps/sets/etc).
-* | POST   | **/api/workouts** | Adds a workout to workouts using information sent inside the `request body` in `/json/`. Example body: { "user_id": "1", "workout_name": "Curls", "muscle_group": "biceps", "weight": "30.0", "reps": "10", "sets": "3", "date_created": "Jan 9th 2020" } `user_id` and `workout_name` are **required** A workout id will be created automatically, and can be used to edit/delete.
+* | POST   | **/api/workouts** | Adds a workout to workouts using information sent inside the `request body` in `/json/`. Example body: { "user_id": "1", "workout_name": "Curls", "muscle_group": "biceps", "weight": "30.0", "reps": "10", "sets": "3", "date_created": "Jan 9th 2020" } `user_id`, `workout_name`, and `date_completed` are **required** A workout id will be created automatically, and can be used to edit/delete.
 * | PUT    | **/api/workouts/:id** | Takes `Workout ID` as a parameter. Updates the workout using information sent inside the `request body` in `/json/`.
 * | DELETE | **/api/workouts/:id** | Takes `Workout ID` as a parameter. Deletes the user's workout. 
