@@ -24,8 +24,6 @@ router.post('/login', (req, res) => {
     Users.findBy({ username })
         .first()
         .then(user => {
-            console.log("User: ", user);
-            console.log(user.department);
             if(user && bcrypt.compareSync(password, user.password)){
                 if(user.department === 'Admin'){
                     req.session.admin = user;

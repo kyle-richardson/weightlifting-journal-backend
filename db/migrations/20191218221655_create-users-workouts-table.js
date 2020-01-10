@@ -14,5 +14,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists('users-workouts');
+  return knex.schema.dropTableIfExists('workouts');
 };
