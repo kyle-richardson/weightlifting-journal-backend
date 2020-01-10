@@ -1,9 +1,6 @@
 const router = require('express').Router();
 const Workouts = require('./workouts-model');
-const restricted = require('../auth/auth-middleware');
 
-
-router.use(restricted);
 
 router.get('/:id', (req, res) => { //takes user id => users list of workouts
     const {id} = req.params;
