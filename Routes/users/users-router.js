@@ -4,7 +4,6 @@ const restricted = require('../auth/auth-middleware');
 const bcrypt = require('bcryptjs');
 
 router.use(restricted);
-router.use('/workouts', workoutsRouter);
 
 router.get('/', (req, res) => {
     console.log("Fetching users..");

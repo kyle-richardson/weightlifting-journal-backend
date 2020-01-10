@@ -8,12 +8,12 @@ module.exports = {
     update
 }
 
-function add(workout){ // => new user workout
+function add(workout){ // workout => new user workout
     return db('workouts')
         .insert(workout)
         .then(ids => {
             const [id] = ids;
-            return findByUsersWorkoutsId(id);
+            return findById(id);
         });
 };
 
