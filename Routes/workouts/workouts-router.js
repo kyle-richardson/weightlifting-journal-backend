@@ -1,29 +1,23 @@
 const router = require('express').Router();
 const Workouts = require('./workouts-model');
-const restricted = require('../auth/auth-middleware');
 
-router.get('/', (req, res) => {
-    console.log("Fetching workouts..");
-    Workouts.find()
-        .then(workouts => {
-            res.json(workouts);
-        })
-        .catch(err => res.send(err));
-});
 
-router.get('/:id', (req, res) => {
+router.get('/:id', (req, res) => { //takes user id => users list of workouts
     const {id} = req.params;
-    console.log(`Getting user with id ${id}`)
-    Workouts.findById(id)
-        .then(user => {
-            res.status(200).json(user)
+    Workouts.findByUserId(id)
+        .then(workouts => {
+            if(workouts.length>0){
+                res.status(200).json({workouts})
+            } else {
+                res.status(400).json({ message: `Please add a workout` })
+            }
         })
         .catch(err => {
             res.status(500).json(err);
-        })
-});
+        });
+})
 
-router.post('/', (req, res) => {
+router.post('/', (req, res) => { // takes body of workout => newly created workout
     const workout = req.body;
 
     Workouts.add(workout)
@@ -38,34 +32,30 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
     const {id} = req.params;
     const changes = req.body;
-
-    Workouts.update(changes, id)
-        .then(workout => {
-            console.log(changes);
-            console.log(workout)
-            if(workout){
+    Workouts.update(id, changes)
+        .then(updated => {
+            if(updated){
                 Workouts.findById(id)
-                .then(workout => {
-                    res.status(200).json({ updatedWorkout: workout })
-                })
-                .catch(err => {
-                    res.status(500).json(err);
-                })
+                    .then(updated => {
+                        res.status(200).json({ message: 'Successfully updated', updated })
+                    })
+                    .catch(err => {
+                        res.status(500).json({ message: 'Updated but error finding new user', err })
+                    })
             } else {
-                res.status(500).json({ message: 'please provide a valid id' })
+                res.status(400).json({ err: 'error'})
             }
         })
         .catch(err => {
-            res.status(500).json({ err: err.message })
+            res.status(500).json({ message: err.message });
         })
-});
+})
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', (req, res) => { // takes workout id => 204 deleted
     const {id} = req.params;
-    console.log(`Deleting user ${id}`);
     Workouts.remove(id)
         .then(deleted => {
-            res.status(200).json(`Workout id: ${id} successfully deleted`);
+            res.status(200).json({ message: `Workout at id: ${id} successfully deleted` });
         })
         .catch(err => {
             res.status(500).json({ err: err.message });

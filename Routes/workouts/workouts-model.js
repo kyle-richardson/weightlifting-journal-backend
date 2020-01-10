@@ -1,26 +1,14 @@
 const db = require('../../db/db-config');
 
 module.exports = {
-    add,
-    find,
-    findBy,
+    findByUserId,
     findById,
+    add,
     remove,
     update
-};
+}
 
-function find(){ // => workouts list
-    return db('workouts')
-        .select('id', 'name', 'muscle_group');
-};
-
-function findBy(filter){ // => workout @ filter
-    return db('workouts')
-        .select('id', 'name', 'muscle_group')
-        .where(filter);
-};
-
-function add(workout){ // => new workout
+function add(workout){ // workout => new user workout
     return db('workouts')
         .insert(workout)
         .then(ids => {
@@ -29,21 +17,27 @@ function add(workout){ // => new workout
         });
 };
 
-function findById(id){ // => workout at id
+function findByUserId(id){ // => user's workouts by user's id
+    console.log(id);
     return db('workouts')
-        .select('id', 'name', 'muscle_group')
-        .where({ id })
-        .first();
-};
+        .select('id', 'user_id', 'workout_name', 'muscle_group', 'weight', 'reps', 'sets', 'date_completed')
+        .where('user_id', '=', id)
+} 
 
-function remove(id){ // => workout deleted
+function findById(id){ // => user's workout by it's id
+    return db('workouts')
+        .select('id', 'user_id', 'workout_name', 'muscle_group', 'weight', 'reps', 'sets', 'date_completed')
+        .where({id});
+}
+
+function remove(id){
     return db('workouts')
         .where({ id: Number(id) })
         .del()
 }
 
-function update(changes, id){
+function update(id, changes){
     return db('workouts')
-        .where({ id })
+        .where({id})
         .update(changes)
 }

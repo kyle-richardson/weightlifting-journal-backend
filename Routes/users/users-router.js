@@ -1,11 +1,9 @@
 const router = require('express').Router();
 const Users = require('./users-model');
 const restricted = require('../auth/auth-middleware');
-const usersWorkoutsRouter = require('../users-workouts/users-workouts-router');
 const bcrypt = require('bcryptjs');
 
 router.use(restricted);
-router.use('/workouts', usersWorkoutsRouter);
 
 router.get('/', (req, res) => {
     console.log("Fetching users..");
