@@ -26,16 +26,15 @@
 * | POST   | **/api/auth/login**   | Logs in a user using the information sent inside the `request body` in `/json`. Example body: { "username": "TheOfficialAdmin", "password": "adminpassword" }. **Should return a cookie that expires in 1 day**
 * | GET    | **/api/auth/logout**  | Logs user out, deletes cookie.
 
-<!-- Restricted Endpoints -->
+<!-- Users  --> 
 **Must be logged in as Admin, OR as user with ID in params**
-
-<!-- Users  -->
 * | GET    | **/api/users**     | Returns an array of all the user objects contained in the database. 
 * | GET    | **/api/users/:id** | Returns the user object with the specified `id`. 
 * | DELETE | **/api/users/:id** | Removes the user with the specified `id` and returns the deleted user. 
 * | PUT    | **/api/users/:id** | Updates the user with the specified `id` using data from the `request body`. Returns the modified document. 
 
 <!-- Workouts -->
+**NOT Restricted**
 * | GET    | **/api/workouts/:id** | Takes `User ID` as a parameter. Returns list of specified workouts (including all reps/sets/etc).
 * | POST   | **/api/workouts** | Adds a workout to workouts using information sent inside the `request body` in `/json/`. Example body: { "user_id": "1", "workout_name": "Curls", "muscle_group": "biceps", "weight": "30.0", "reps": "10", "sets": "3" } `user_id` and `workout_name` are **required** A workout id will be created automatically, and can be used to edit/delete.
 * | PUT    | **/api/workouts/:id** | Takes `Workout ID` as a parameter. Updates the workout using information sent inside the `request body` in `/json/`.
