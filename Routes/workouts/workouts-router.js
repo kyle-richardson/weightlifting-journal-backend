@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const Workouts = require('./users-workouts-model');
 
+router.use(restricted);
+
 router.get('/:id', (req, res) => {
     const {id} = req.params;
     Workouts.findByUserId(id)
