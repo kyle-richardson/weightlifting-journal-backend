@@ -1,11 +1,11 @@
 
 exports.up = function(knex) {
-    return knex.schema.createTable('users-workouts', tbl => {
+    return knex.schema.createTable('workouts', tbl => {
         tbl.increments();
         tbl.integer('user_id').unsigned().notNullable()
             .references('id').inTable('users');
-        tbl.integer('workout_id').unsigned().notNullable()
-            .references('id').inTable('workouts');
+        tbl.string('workout_name', 128).notNullable();
+        tbl.string('muscle_group', 128);
         tbl.decimal('weight');
         tbl.integer('reps');
         tbl.integer('sets');
