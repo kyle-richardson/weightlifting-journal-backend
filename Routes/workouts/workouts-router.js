@@ -31,10 +31,17 @@ router.post('/', (req, res) => { // takes body of workout => newly created worko
 
 router.put('/:id', (req, res) => {
     const {id} = req.params;
-    Workouts.update(id)
+    const changes = req.body;
+    Workouts.update(id, changes)
         .then(updated => {
             if(updated){
-                res.status(200).json({ message: 'Successfully updated', updated })
+                Workouts.findById(id)
+                    .then(updated => {
+                        res.status(200).json({ message: 'Successfully updated', updated })
+                    })
+                    .catch(err => {
+                        res.status(500).json({ message: 'Updated but error finding new user', err })
+                    })
             } else {
                 res.status(400).json({ err: 'error'})
             }
@@ -48,7 +55,7 @@ router.delete('/:id', (req, res) => { // takes workout id => 204 deleted
     const {id} = req.params;
     Workouts.remove(id)
         .then(deleted => {
-            res.status(200).json({ message: `User's Workout at id: ${id} successfully deleted` });
+            res.status(200).json({ message: `Workout at id: ${id} successfully deleted` });
         })
         .catch(err => {
             res.status(500).json({ err: err.message });

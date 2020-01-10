@@ -9,7 +9,7 @@ exports.up = function(knex) {
         tbl.decimal('weight');
         tbl.integer('reps');
         tbl.integer('sets');
-        tbl.timestamp('date_completed');
+        tbl.timestamp('date_completed').notNullable();
     })
 };
 
