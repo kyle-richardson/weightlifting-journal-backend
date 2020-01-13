@@ -18,7 +18,6 @@ function add(workout){ // workout => new user workout
 };
 
 function findByUserId(id){ // => user's workouts by user's id
-    console.log(id);
     return db('workouts')
         .select('id', 'user_id', 'workout_name', 'muscle_group', 'weight', 'reps', 'sets', 'date_completed')
         .where('user_id', '=', id)
