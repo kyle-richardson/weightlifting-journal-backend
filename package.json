@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch",
+    "test": "jest --watch --verbose",
     "server": "node index.js",
     "start": "node index.js"
   },
   "jest": {
-    "testEnvirnoment": "node"
+    "testEnvironment": "node"
   },
   "repository": {
     "type": "git",
