@@ -1,4 +1,4 @@
-const request = require('supertest'); //install 
+const request = require('supertest'); 
 const server = require('../server');
 
 describe('GET /users', function() {
