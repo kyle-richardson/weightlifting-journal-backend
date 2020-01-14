@@ -10,10 +10,11 @@ middleware(server);
 // server.use(cors());
 server.use("/api", apiRouter);
 server.use((req, res, next) => {
-    res.append('Access-Control-Allow-Origin', ['*']);
-    res.append('Access-Control-Allow-Methods', '*');
-    res.append('Access-Control-Allow-Headers', 'Content-Type');
-    res.set('Accept', 'application/json');
+    res.set({
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'DELETE,GET,PATCH,POST,PUT',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    });
     next();
 });
 
