@@ -7,7 +7,7 @@ const middleware = require("./Routes/api/middleware");
 
 middleware(server);
 
-server.use(cors());
+// server.use(cors());
 server.use("/api", apiRouter);
 
 module.exports = server;
