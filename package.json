@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --watch --verbose",
     "server": "node index.js",
-    "start": "yarn nodemon --exec \"yarn babel-node ./index.js\""
+    "start": "node index.js"
   },
   "jest": {
     "testEnvironment": "node"
