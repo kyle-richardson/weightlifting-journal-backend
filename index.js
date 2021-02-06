@@ -1,9 +1,6 @@
-require('dotenv').config();
+const { port } = require("./config"); 
+const server = require("./server.js");
 
-import { listen } from './server';
-
-const PORT = process.env.PORT || 5000;
-
-listen(PORT, () => {
-    console.log(`=== Server Listening on port ${PORT} ===`);
+server.listen(port, () => {
+    console.log(`=== Server Listening on port ${port} ===`);
 });
