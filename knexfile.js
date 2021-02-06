@@ -1,5 +1,5 @@
 // Update with your config settings.
-import {db_url} from "./config"
+const { db_url } = require("./config");
 
 module.exports = {
   development: {
