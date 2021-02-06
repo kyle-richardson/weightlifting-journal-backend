@@ -6,13 +6,20 @@
   "scripts": {
     "test": "jest --watch --verbose",
     "server": "node index.js",
-    "start": "node index.js"
+    "start": "yarn nodemon --exec \"yarn babel-node ./index.js\""
   },
   "jest": {
     "testEnvironment": "node"
   },
+  "engines": {
+    "node": "^14.2.0",
+    "yarn": "^1.19.2"
+  },
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "cross-env": "^6.0.3",

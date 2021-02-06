@@ -46,7 +46,7 @@ module.exports = {
       directory: "./db/seeds"
     },
     pool: {
-      min: 2,
+      min: 0,
       max: 6,
       createTimeoutMillis: 3000,
       acquireTimeoutMillis: 30000,
