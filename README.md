@@ -22,7 +22,7 @@
 
 <!-- BASE URL -->
 
-**https://liftjournal.herokuapp.com**
+**https://lift-journal.herokuapp.com**
 
 <!-- Auth  -->
 
