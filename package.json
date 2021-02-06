@@ -1,5 +1,5 @@
 {
-  "name": "back-end",
+  "name": "lift-journal-back-end",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,16 +11,7 @@
   "jest": {
     "testEnvironment": "node"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BW-WeightLiftingJournal/back-end.git"
-  },
-  "author": "Sage Jordan",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/BW-WeightLiftingJournal/back-end/issues"
-  },
-  "homepage": "https://github.com/BW-WeightLiftingJournal/back-end#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
