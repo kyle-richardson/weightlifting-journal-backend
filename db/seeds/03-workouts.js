@@ -1,10 +1,6 @@
 
 exports.seed = function(knex) {
   today = new Date()
-  // Deletes ALL existing entries
-  return knex('workouts').del()
-    .then(function () {
-      // Inserts seed entries
       return knex('workouts').insert([
         { user_id: 1, 
           workout_name: 'Push Ups', 
@@ -15,5 +11,4 @@ exports.seed = function(knex) {
           date_completed: `${(today.getMonth() + 1)}/${today.getDate()}/${today.getFullYear()}`
       }
       ]);
-    });
 };
