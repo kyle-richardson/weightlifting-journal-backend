@@ -19,7 +19,7 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
     let { username, password } = req.body;
-    console.log("Username, password: ", username, password);
+    // console.log("Username, password: ", username, password);
 
     Users.findBy({ username })
         .first()
@@ -31,7 +31,7 @@ router.post('/login', (req, res) => {
                     res.status(200).json({ message: `Welcome Admin ${user.username}!`, session: req.session });
                 } else {
                     req.session.user = user;
-                    res.status(200).json({ message: `Welcome Student ${user.username}!`, session: req.session });
+                    res.status(200).json({ message: `Welcome ${user.username}!`, session: req.session });
                 }
             } else {
                 res.status(401).json({ message: `Invalid Cridentials` });

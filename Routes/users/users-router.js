@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 
 router.use(restricted);
 
-router.get('/', (req, res) => {
+router.get('/', restricted, (req, res) => {
     console.log("Fetching users..");
     Users.find()
         .then(users => {

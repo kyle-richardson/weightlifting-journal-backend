@@ -26,6 +26,7 @@ function findByUserId(id){ // => user's workouts by user's id
 function findById(id){ // => user's workout by it's id
     return db('workouts')
         .select('id', 'user_id', 'workout_name', 'muscle_group', 'weight', 'reps', 'sets', 'date_completed')
+        .first()
         .where({id});
 }
 

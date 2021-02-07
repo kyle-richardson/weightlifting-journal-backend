@@ -6,11 +6,7 @@ router.get('/:id', (req, res) => { //takes user id => users list of workouts
     const {id} = req.params;
     Workouts.findByUserId(id)
         .then(workouts => {
-            if(workouts.length>0){
-                res.status(200).json({workouts})
-            } else {
-                res.status(400).json({ message: `Please add a workout` })
-            }
+            res.status(200).json(workouts)
         })
         .catch(err => {
             res.status(500).json(err);
@@ -22,7 +18,7 @@ router.post('/', (req, res) => { // takes body of workout => newly created worko
 
     Workouts.add(workout)
         .then(newWorkout => {
-            res.status(200).json({ newWorkout: newWorkout })
+            res.status(200).json(newWorkout)
         })
         .catch(err => {
             res.status(500).json({ err: err.message });

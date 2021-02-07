@@ -20,8 +20,8 @@ function findBy(filter){ // => user @ filter
         .where(filter);
 };
 
-function add(user){ // => new user
-    return db('users')
+async function add(user){ // => new user
+    return await db('users')
         .insert(user)
         .then(ids => {
             const [id] = ids;
