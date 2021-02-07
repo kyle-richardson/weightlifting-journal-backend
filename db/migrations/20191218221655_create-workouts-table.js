@@ -3,7 +3,7 @@ exports.up = function(knex) {
     return knex.schema.createTable('workouts', tbl => {
         tbl.increments();
         tbl.integer('user_id').unsigned().notNullable()
-            .references('id').inTable('users');
+            .references('id').inTable('users').onDelete('CASCADE');
         tbl.string('workout_name', 128).notNullable();
         tbl.string('muscle_group', 128);
         tbl.decimal('weight');
