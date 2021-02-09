@@ -1,4 +1,5 @@
 const db = require('../../db/db-config');
+const { node_env } = require("../../config"); 
 
 module.exports = {
     add,
@@ -6,7 +7,8 @@ module.exports = {
     findBy,
     findById,
     remove,
-    update
+    update,
+    findByUser
 };
 
 function find(){ // => user list
@@ -19,6 +21,13 @@ function findBy(filter){ // => user @ filter
         .select('id', 'username', 'password', 'department')
         .where(filter);
 };
+
+function findByUser(name) {
+    const like = node_env ==='production' ? 'ILIKE' : 'LIKE'
+    return db('users')
+        .select('id', 'username', 'password', 'department')
+        .where('username', like,  `%${name}%`)
+}
 
 async function add(user){ // => new user
     return await db('users')
