@@ -11,10 +11,11 @@ module.exports = {
 function add(workout){ // workout => new user workout
     return db('workouts')
         .insert(workout)
-        .then(ids => {
-            const [id] = ids;
-            return findById(id);
-        });
+        .then(res=>res)
+        // .then(ids => {
+        //     const [id] = ids;
+        //     return findById(id);
+        // });
 };
 
 function findByUserId(id){ // => user's workouts by user's id
