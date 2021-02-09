@@ -23,10 +23,11 @@ function findBy(filter){ // => user @ filter
 async function add(user){ // => new user
     return await db('users')
         .insert(user)
-        .then(ids => {
-            const [id] = ids;
-            return findById(id);
-        });
+        // .then(ids => {
+        //     const [id] = ids;
+        //     return findById(id);
+        // });
+        .then(res => res)
 };
 
 function findById(id){ // => user at id
