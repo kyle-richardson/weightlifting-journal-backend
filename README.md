@@ -7,7 +7,6 @@
 - 1. Let you register, login, and edit users
   2. Create, review, update, and delete workout data
      - Name of exercise
-     - Region of body workout targets
      - Weight lifted
      - Amount of reps and sets completed
      - Date completed
@@ -18,11 +17,11 @@
 
 # Endpoints
 
-- | Method | **URL** | Description
-
 <!-- BASE URL -->
 
-**https://lift-journal.herokuapp.com**
+- | BASE URL | **https://lift-journal.herokuapp.com**
+
+- | Method | **URL** | Description
 
 <!-- Auth  -->
 
